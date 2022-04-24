@@ -5,7 +5,7 @@ const LetterInput = (props) => {
   const { input, eventHandler, id } = props;
 
   const handleChange = (event) =>
-    eventHandler(event.target.id, event.target.value);
+    eventHandler(event.target.id, event.target.value.toLowerCase());
 
   return (
     <input

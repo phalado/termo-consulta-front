@@ -13,10 +13,7 @@ const App = (props) => {
     const fetchWordList = async () => {
       const response = await getWordList(state);
 
-      if (mounted && response) {
-        setWordList(response);
-        console.log(response);
-      }
+      if (mounted && response) setWordList(response);
     };
 
     fetchWordList();
