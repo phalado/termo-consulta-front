@@ -14,9 +14,10 @@ const WordsListContainer = {
   wordsContainer: {
     display: "flex",
     flexFlow: "wrap",
+    overflow: "scroll",
+    height: "90%",
   },
   words: {
-    // width: "60px",
     marginRight: "15px",
     flexGrow: 1,
   },
