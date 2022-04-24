@@ -1,17 +1,35 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { Provider } from "react-redux";
+import { createStore } from "redux";
+import rootReducer from "./reducers";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import App from "./containers/App";
+import "./index.css";
+
+let initialState = {
+  inputs: {
+    l_one: "",
+    l_two: "",
+    l_three: "",
+    l_four: "",
+    l_five: "",
+  },
+  searchArray: [],
+  removeArray: [],
+  wordList: {
+    count: 0,
+    result: [],
+  },
+};
+
+const store = createStore(rootReducer, initialState);
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
