@@ -11,7 +11,11 @@ const WordsListContainer = (props) => {
       <h2 style={styles.title}>Contagem: {count}</h2>
       <div style={styles.wordsContainer}>
         {result.map((word) => {
-          return <p style={styles.words}>{word}</p>;
+          return (
+            <p style={styles.words} key={word}>
+              {word}
+            </p>
+          );
         })}
       </div>
     </div>

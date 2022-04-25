@@ -16,6 +16,7 @@ const WordsListContainer = {
     flexFlow: "wrap",
     overflow: "scroll",
     height: "90%",
+    alignContent: "flex-start",
   },
   words: {
     marginRight: "15px",

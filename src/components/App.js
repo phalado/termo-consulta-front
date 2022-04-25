@@ -1,17 +1,27 @@
 import React, { useEffect } from "react";
-import LetterInput from "./LetterInput";
 import styles from "../styles/App";
 import { getWordList } from "../services/api";
 import WordsListContainer from "./WordsListContainer";
+import InputContainer from "./InputContainer";
+import KeyboardLine from "./KeyboardLine";
 
 const App = (props) => {
-  const { inputs, wordList, state, editLetter, setWordList } = props;
+  const {
+    state,
+    editLetter,
+    setWordList,
+    addLetterToSearch,
+    removeLetterFromSearch,
+    addLetterToRemove,
+    removeLetterFromRemove,
+  } = props;
+  const { inputs, searchArray, removeArray, wordList } = state;
 
   useEffect(() => {
     let mounted = true;
 
     const fetchWordList = async () => {
-      const response = await getWordList(state);
+      const response = await getWordList({ inputs, searchArray, removeArray });
 
       if (mounted && response) setWordList(response);
     };
@@ -19,9 +29,16 @@ const App = (props) => {
     fetchWordList();
 
     return () => (mounted = false);
-  }, [state, setWordList]);
+  }, [inputs, setWordList, searchArray, removeArray]);
 
   const handleChange = (id, value) => editLetter({ id, letter: value });
+  const handleButtonClick = (value) => {
+    if (removeArray.includes(value)) removeLetterFromRemove(value);
+    else if (searchArray.includes(value)) {
+      removeLetterFromSearch(value);
+      addLetterToRemove(value);
+    } else addLetterToSearch(value);
+  };
 
   return (
     <div className="App">
@@ -29,34 +46,14 @@ const App = (props) => {
         <h1 style={styles.title}>Termo Solver</h1>
       </header>
       <main style={styles.main}>
-        <div style={styles.inputContainer}>
-          <LetterInput
-            input={inputs.l_one}
-            eventHandler={handleChange}
-            id="l_one"
-          />
-          <LetterInput
-            input={inputs.l_two}
-            eventHandler={handleChange}
-            id="l_two"
-          />
-          <LetterInput
-            input={inputs.l_three}
-            eventHandler={handleChange}
-            id="l_three"
-          />
-          <LetterInput
-            input={inputs.l_four}
-            eventHandler={handleChange}
-            id="l_four"
-          />
-          <LetterInput
-            input={inputs.l_five}
-            eventHandler={handleChange}
-            id="l_five"
+        <div style={styles.leftWing}>
+          <InputContainer inputs={inputs} handleChange={handleChange} />
+          <KeyboardLine
+            handleButtonClick={handleButtonClick}
+            state={state}
           />
         </div>
-        <div style={styles.wordsContainer}>
+        <div style={styles.rightWing}>
           <WordsListContainer wordList={wordList} />
         </div>
       </main>

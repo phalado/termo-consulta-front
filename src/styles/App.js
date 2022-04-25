@@ -8,12 +8,14 @@ const AppStyles = {
     height: "95%",
     display: "flex",
   },
-  inputContainer: {
+  leftWing: {
     width: "50%",
+  },
+  inputContainer: {
     display: "flex",
     justifyContent: "space-evenly",
   },
-  wordsContainer: {
+  rightWing: {
     width: "50%",
     height: "100%",
   },
