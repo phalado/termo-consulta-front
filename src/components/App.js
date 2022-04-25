@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import styles from "../styles/App";
 import { getWordList } from "../services/api";
 import WordsListContainer from "./WordsListContainer";
@@ -31,6 +31,28 @@ const App = (props) => {
     return () => (mounted = false);
   }, [inputs, setWordList, searchArray, removeArray]);
 
+  const [mainStyle, setMainStyle] = useState(styles.main);
+  const [leftWingStyle, setLeftWingStyle] = useState(styles.leftWing);
+  const [rightWingStyle, setRightWingStyle] = useState(styles.rightWing);
+
+  useLayoutEffect(() => {
+    const updateSize = () => {
+      if (window.innerWidth > 900) {
+        setMainStyle(styles.main);
+        setLeftWingStyle(styles.leftWing);
+        setRightWingStyle(styles.rightWing);
+      } else {
+        setMainStyle(styles.mainSmall);
+        setLeftWingStyle(styles.leftWingSmall);
+        setRightWingStyle(styles.rightWingSmall);
+      }
+    };
+
+    window.addEventListener("resize", updateSize);
+    updateSize();
+    return () => window.removeEventListener("resize", updateSize);
+  });
+
   const handleChange = (id, value) => editLetter({ id, letter: value });
   const handleButtonClick = (value) => {
     if (removeArray.includes(value)) removeLetterFromRemove(value);
@@ -44,16 +66,24 @@ const App = (props) => {
     <div className="App">
       <header className="App-header">
         <h1 style={styles.title}>Termo Solver</h1>
+        <h2 style={styles.subTitle}>
+          by{" "}
+          <a
+            style={styles.link}
+            href="https://www.phalado.tech/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Phalado
+          </a>
+        </h2>
       </header>
-      <main style={styles.main}>
-        <div style={styles.leftWing}>
+      <main style={mainStyle}>
+        <div style={leftWingStyle}>
           <InputContainer inputs={inputs} handleChange={handleChange} />
-          <KeyboardLine
-            handleButtonClick={handleButtonClick}
-            state={state}
-          />
+          <KeyboardLine handleButtonClick={handleButtonClick} state={state} />
         </div>
-        <div style={styles.rightWing}>
+        <div style={rightWingStyle}>
           <WordsListContainer wordList={wordList} />
         </div>
       </main>
