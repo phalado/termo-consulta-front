@@ -7,6 +7,7 @@ const HowToModalStyles = {
       height: "100%",
       width: "100%",
       backgroundColor: "#000000b0",
+      zIndex: 1,
     },
     container: {
       marginLeft: "30%",
@@ -59,6 +60,7 @@ const HowToModalStyles = {
       height: "100%",
       width: "100%",
       backgroundColor: "#000000b0",
+      zIndex: 1,
     },
     container: {
       marginLeft: "10%",
