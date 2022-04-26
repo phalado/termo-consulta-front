@@ -5,6 +5,7 @@ import WordsListContainer from "./WordsListContainer";
 import InputContainer from "./InputContainer";
 import KeyboardLine from "./KeyboardLine";
 import PropTypes from "prop-types";
+import HowToModal from "./HowToModal";
 
 const App = (props) => {
   const {
@@ -33,6 +34,7 @@ const App = (props) => {
   }, [inputs, setWordList, searchArray, removeArray]);
 
   const [styleSize, setStyleSize] = useState("normalSize");
+  const [modalOpen, setModalOpen] = useState(true);
 
   useLayoutEffect(() => {
     const updateSize = () => {
@@ -52,6 +54,20 @@ const App = (props) => {
       removeLetterFromSearch(value);
       addLetterToRemove(value);
     } else addLetterToSearch(value);
+  };
+
+  const questionIcon = () => {
+    return (
+      <div style={styles.questionIcon}>
+        <img
+          style={styles.questionIconImage}
+          src={"./contents/images/questionIcon.png"}
+          alt="Close icon"
+          onClick={() => setModalOpen(true)}
+          title="Como usar o termo solver"
+        />
+      </div>
+    );
   };
 
   return (
@@ -87,6 +103,12 @@ const App = (props) => {
           <WordsListContainer wordList={wordList} styleSize={styleSize} />
         </div>
       </main>
+      <HowToModal
+        styleSize={styleSize}
+        modalOpen={modalOpen}
+        setModalOpen={setModalOpen}
+      />
+      {questionIcon()}
     </div>
   );
 };

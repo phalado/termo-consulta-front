@@ -57,6 +57,16 @@ const AppStyles = {
       margin: "auto",
     },
   },
+  questionIcon: {
+    position: "absolute",
+    top: "40px",
+    right: "6%",
+    width: "40px",
+  },
+  questionIconImage: {
+    width: "40px",
+    cursor: "pointer",
+  },
 };
 
 export default AppStyles;

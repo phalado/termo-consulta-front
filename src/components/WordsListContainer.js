@@ -27,8 +27,8 @@ WordsListContainer.propTypes = {
   wordList: PropTypes.shape({
     count: PropTypes.number,
     result: PropTypes.arrayOf(PropTypes.string),
-    styleSize: PropTypes.string.isRequired,
   }),
+  styleSize: PropTypes.string.isRequired,
 };
 
 export default WordsListContainer;
