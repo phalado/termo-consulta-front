@@ -34,7 +34,7 @@ const App = (props) => {
   }, [inputs, setWordList, searchArray, removeArray]);
 
   const [styleSize, setStyleSize] = useState("normalSize");
-  const [modalOpen, setModalOpen] = useState(true);
+  const [modalOpen, setModalOpen] = useState(false);
 
   useLayoutEffect(() => {
     const updateSize = () => {
