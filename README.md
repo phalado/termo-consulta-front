@@ -1,70 +1,104 @@
-# Getting Started with Create React App
+# Termo Solver - Front-End
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This web app is a helper to solve the Brazilian version of [Wordle](wordle): [Termo](termo).
+This application currently consists of 5993 words. If you believe any word is missing, please send me a message.
 
-## Available Scripts
+<h1 align="center"><img src="https://raw.githack.com/phalado/termo-consulta/main/public/initial.png"></h1>
 
-In the project directory, you can run:
+## Table of contents
 
-### `npm start`
+- [Termo Solver - Front-End](#termo-solver---front-end)
+  - [Table of contents](#table-of-contents)
+  - [About](#about)
+  - [The project](#the-project)
+    - [How to use it](#how-to-use-it)
+    - [Technologies used](#technologies-used)
+  - [Contact](#contact)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## About
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Link to the live version [here][live-version].
 
-### `npm test`
+Repository: https://github.com/phalado/termo-consulta-front
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Back-End repository: https://github.com/phalado/termo-consulta
 
-### `npm run build`
+Please, star the projects. It makes me happy.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## The project
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### How to use it
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+This application won't solve the puzzle for you. You still have to deduct the next steps. It only shows you the possible words for the answer.
 
-### `npm run eject`
+![one_word][one_word]
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+You have 3 possibilities:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Fill one of the top squares with a letter
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+  Do it if you know the correct position of any letter. This will hugely decrease the number of remaining possibilities.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+  ![green_letter][green_letter]
 
-## Learn More
+  After this, it won't be possible to click on this specific letter, and it will become green on the digital keyboard on the screen.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Click on one of the letters on the digital keyboard
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+  Do it if you know that the answer has this letter, but you aren't sure of its position.
 
-### Code Splitting
+  ![yellow_letter][yellow_letter]
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+  After clicking on it, it will become yellow.
 
-### Analyzing the Bundle Size
+- Double click on one of the letters on the digital keyboard
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+  Do it if you know that the answer does not have this letter.
 
-### Making a Progressive Web App
+  ![red_letter][red_letter]
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+  After double-clicking on it, it will become red.
 
-### Advanced Configuration
+### Technologies used
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+To create this project I used:
 
-### Deployment
+- Ruby
+- Ruby on Rails
+- Searchkick
+- Rspec
+- Faker
+- FactoryBot
+- Simplecov
+- JavaScript
+- A bit of HTML and CSS
+- Rubocop
+- React
+- Redux
+- Github
+- Netlify for Front-End
+- Heroku for Back-End
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Contact
 
-### `npm run build` fails to minify
+Author: Raphael Cordeiro
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Follow me on [Twitter][rapha-twitter], visit my [Github portfolio][rapha-github], my [Linkedin][rapha-linkedin], or my [personal portfolio][rapha-personal].
+
+<!-- Links -->
+
+[wordle]: https://www.nytimes.com/games/wordle/index.html
+[termo]: https://term.ooo/
+[live-version]: https://termo-solver.netlify.app/
+[front-end]: https://github.com/phalado/termo-consulta-front
+[rapha-github]: https://github.com/phalado
+[rapha-twitter]: https://twitter.com/phalado
+[rapha-linkedin]: https://www.linkedin.com/in/raphael-cordeiro/
+[rapha-personal]: https://www.phalado.tech/
+
+<!-- Images -->
+
+[one_word]: https://raw.githack.com/phalado/termo-consulta/main/public/one_word.png
+[green_letter]: https://raw.githack.com/phalado/termo-consulta/main/public/green_a.png
+[yellow_letter]: https://raw.githack.com/phalado/termo-consulta/main/public/yellow_a.png
+[red_letter]: https://raw.githack.com/phalado/termo-consulta/main/public/red_a.png
