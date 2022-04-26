@@ -4,6 +4,7 @@ import { getWordList } from "../services/api";
 import WordsListContainer from "./WordsListContainer";
 import InputContainer from "./InputContainer";
 import KeyboardLine from "./KeyboardLine";
+import PropTypes from "prop-types";
 
 const App = (props) => {
   const {
@@ -31,21 +32,12 @@ const App = (props) => {
     return () => (mounted = false);
   }, [inputs, setWordList, searchArray, removeArray]);
 
-  const [mainStyle, setMainStyle] = useState(styles.main);
-  const [leftWingStyle, setLeftWingStyle] = useState(styles.leftWing);
-  const [rightWingStyle, setRightWingStyle] = useState(styles.rightWing);
+  const [styleSize, setStyleSize] = useState("normalSize");
 
   useLayoutEffect(() => {
     const updateSize = () => {
-      if (window.innerWidth > 900) {
-        setMainStyle(styles.main);
-        setLeftWingStyle(styles.leftWing);
-        setRightWingStyle(styles.rightWing);
-      } else {
-        setMainStyle(styles.mainSmall);
-        setLeftWingStyle(styles.leftWingSmall);
-        setRightWingStyle(styles.rightWingSmall);
-      }
+      if (window.innerWidth > 900) setStyleSize("normalSize");
+      else setStyleSize("smallSize");
     };
 
     window.addEventListener("resize", updateSize);
@@ -65,8 +57,8 @@ const App = (props) => {
   return (
     <div className="App">
       <header className="App-header">
-        <h1 style={styles.title}>Termo Solver</h1>
-        <h2 style={styles.subTitle}>
+        <h1 style={styles[styleSize].title}>Termo Solver</h1>
+        <h2 style={styles[styleSize].subTitle}>
           by{" "}
           <a
             style={styles.link}
@@ -78,17 +70,43 @@ const App = (props) => {
           </a>
         </h2>
       </header>
-      <main style={mainStyle}>
-        <div style={leftWingStyle}>
-          <InputContainer inputs={inputs} handleChange={handleChange} />
-          <KeyboardLine handleButtonClick={handleButtonClick} state={state} />
+      <main style={styles[styleSize].main}>
+        <div style={styles[styleSize].leftWing}>
+          <InputContainer
+            inputs={inputs}
+            handleChange={handleChange}
+            styleSize={styleSize}
+          />
+          <KeyboardLine
+            handleButtonClick={handleButtonClick}
+            state={state}
+            styleSize={styleSize}
+          />
         </div>
-        <div style={rightWingStyle}>
-          <WordsListContainer wordList={wordList} />
+        <div style={styles[styleSize].rightWing}>
+          <WordsListContainer wordList={wordList} styleSize={styleSize} />
         </div>
       </main>
     </div>
   );
+};
+
+App.propTypes = {
+  state: PropTypes.shape({
+    inputs: PropTypes.objectOf(PropTypes.string),
+    searchArray: PropTypes.arrayOf(PropTypes.string),
+    removeArray: PropTypes.arrayOf(PropTypes.string),
+    wordList: PropTypes.shape({
+      count: PropTypes.number,
+      result: PropTypes.arrayOf(PropTypes.string),
+    }),
+  }).isRequired,
+  editLetter: PropTypes.func.isRequired,
+  setWordList: PropTypes.func.isRequired,
+  addLetterToSearch: PropTypes.func.isRequired,
+  removeLetterFromSearch: PropTypes.func.isRequired,
+  addLetterToRemove: PropTypes.func.isRequired,
+  removeLetterFromRemove: PropTypes.func.isRequired,
 };
 
 export default App;
