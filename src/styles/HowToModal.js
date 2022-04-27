@@ -17,7 +17,7 @@ const HowToModalStyles = {
       backgroundColor: "white",
       borderRadius: "10px",
       padding: "1%",
-      overflow: "overlay",
+      overflow: "auto",
       position: "relative",
     },
     title: {
@@ -70,7 +70,7 @@ const HowToModalStyles = {
       backgroundColor: "white",
       borderRadius: "10px",
       padding: "1%",
-      overflow: "overlay",
+      overflow: "auto",
       position: "relative",
     },
     title: {

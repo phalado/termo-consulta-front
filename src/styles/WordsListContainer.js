@@ -19,7 +19,7 @@ const WordsListContainer = {
     wordsContainer: {
       display: "flex",
       flexFlow: "wrap",
-      overflow: "scroll",
+      overflow: "auto",
       height: "90%",
       alignContent: "flex-start",
     },
@@ -50,7 +50,7 @@ const WordsListContainer = {
     wordsContainer: {
       display: "flex",
       flexFlow: "wrap",
-      overflow: "scroll",
+      overflow: "auto",
       height: "80%",
       alignContent: "flex-start",
     },
@@ -60,7 +60,6 @@ const WordsListContainer = {
       fontSize: "0.8em",
     },
   },
-  
 };
 
 export default WordsListContainer;
