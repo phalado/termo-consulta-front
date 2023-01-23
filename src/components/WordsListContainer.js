@@ -1,9 +1,10 @@
 import React from "react";
 import styles from "../styles/WordsListContainer";
 import PropTypes from "prop-types";
+import WordChip from "./WordChip";
 
 const WordsListContainer = (props) => {
-  const { wordList, styleSize } = props;
+  const { wordList, styleSize, addNewRemovedWord } = props;
   const { count, result } = wordList;
 
   return (
@@ -11,13 +12,7 @@ const WordsListContainer = (props) => {
       <h1 style={styles[styleSize].title}>Lista de possíveis respostas</h1>
       <h2 style={styles[styleSize].subtitle}>Contagem: {count}</h2>
       <div style={styles[styleSize].wordsContainer}>
-        {result.map((word) => {
-          return (
-            <p style={styles[styleSize].words} key={word}>
-              {word}
-            </p>
-          );
-        })}
+        {result.map((word) => <WordChip word={word} addNewRemovedWord={addNewRemovedWord} />)}
       </div>
     </div>
   );

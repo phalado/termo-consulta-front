@@ -6,6 +6,7 @@ import InputContainer from "./InputContainer";
 import KeyboardLine from "./KeyboardLine";
 import PropTypes from "prop-types";
 import HowToModal from "./HowToModal";
+import RemovedWordsList from "./RemovedWordsList";
 
 const App = (props) => {
   const {
@@ -16,8 +17,10 @@ const App = (props) => {
     removeLetterFromSearch,
     addLetterToRemove,
     removeLetterFromRemove,
+    removeWord,
+    removeNewWord
   } = props;
-  const { inputs, searchArray, removeArray, wordList } = state;
+  const { inputs, searchArray, removeArray, removedWords, wordList } = state;
 
   useEffect(() => {
     let mounted = true;
@@ -25,13 +28,13 @@ const App = (props) => {
     const fetchWordList = async () => {
       const response = await getWordList({ inputs, searchArray, removeArray });
 
-      if (mounted && response) setWordList(response);
+      if (mounted && response) setWordList(response, removedWords);
     };
 
     fetchWordList();
 
     return () => (mounted = false);
-  }, [inputs, setWordList, searchArray, removeArray]);
+  }, [inputs, setWordList, searchArray, removeArray, removedWords]);
 
   const [styleSize, setStyleSize] = useState("normalSize");
   const [modalOpen, setModalOpen] = useState(false);
@@ -55,6 +58,11 @@ const App = (props) => {
       addLetterToRemove(value);
     } else addLetterToSearch(value);
   };
+
+  const addNewRemovedWord = (word) => {
+    removeWord(word)
+    removeNewWord(word)
+  }
 
   const questionIcon = () => {
     return (
@@ -98,9 +106,14 @@ const App = (props) => {
             state={state}
             styleSize={styleSize}
           />
+          <RemovedWordsList removedWords={removedWords} styleSize={styleSize} />
         </div>
         <div style={styles[styleSize].rightWing}>
-          <WordsListContainer wordList={wordList} styleSize={styleSize} />
+          <WordsListContainer
+            wordList={wordList}
+            styleSize={styleSize}
+            addNewRemovedWord={addNewRemovedWord}
+          />
         </div>
       </main>
       <HowToModal

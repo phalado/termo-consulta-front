@@ -8,13 +8,22 @@ const WordsListContainer = {
       color: "black",
       padding: "10px",
     },
+    removedWordsContainer: {
+      backgroundColor: "white",
+      width: "90%",
+      height: "90%",
+      borderRadius: "10px",
+      color: "black",
+      padding: "10px",
+      marginLeft: "20px"
+    },
     title: {
       margin: "0 0 10px 0",
-      textAlign: "center",
+      textAlign: "center" as "center",
     },
     subtitle: {
       margin: "0 0 10px 0",
-      textAlign: "center",
+      textAlign: "center" as "center",
     },
     wordsContainer: {
       display: "flex",
@@ -37,14 +46,23 @@ const WordsListContainer = {
       color: "black",
       padding: "10px",
     },
+    removedWordsContainer: {
+      backgroundColor: "white",
+      width: "90%",
+      height: "100%",
+      borderRadius: "10px",
+      color: "black",
+      padding: "10px",
+      marginTop: "360px"
+    },
     title: {
       margin: "0 0 5px 0",
-      textAlign: "center",
+      textAlign: "center" as "center",
       fontSize: "1.2em",
     },
     subtitle: {
       margin: "0 0 10px 0",
-      textAlign: "center",
+      textAlign: "center" as "center",
       fontSize: "1em",
     },
     wordsContainer: {
